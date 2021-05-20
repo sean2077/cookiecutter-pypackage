@@ -1,4 +1,4 @@
-from {{cookiecutter.project_slug}} import __author__, __name__, __version__
+from {{cookiecutter.project_slug}} import __author__, __name__, __version__, __project_hyphen__
 from setuptools import find_packages, setup
 
 def read_requirements():
@@ -25,7 +25,7 @@ setup(
     python_requires=">=3.6",
     entry_points={
         "console_scripts": [
-            f"{__name__} = {__name__}.{__name__}:main",
+            f"{__project_hyphen__} = {__name__}.{__name__}:main",
         ],
     },
 )
