@@ -1,6 +1,6 @@
 import argparse
 
-from . import __project_hyphen__
+from . import prog_name
 
 
 def subcommand1_func(args):
@@ -10,7 +10,7 @@ def subcommand1_func(args):
 def main():
     # create main parser
     parser = argparse.ArgumentParser(
-        prog=__project_hyphen__, description="example python cli tool."
+        prog=prog_name, description="example python cli tool."
     )
 
     # create subcommands' main parser
