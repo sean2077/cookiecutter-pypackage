@@ -4,7 +4,7 @@ FULLNAME := `python setup.py --fullname`
 VERSION := `python setup.py --version`
 BUILD := `git rev-parse --short HEAD`
 
-.PHONY: info help clean
+.PHONY: info help clean dist docs
 .DEFAULT_GOAL := help
 
 define PRINT_HELP_PYSCRIPT
@@ -50,3 +50,9 @@ install: ## install the package to the active Python's site-packages
 
 uninstall: ## uninstall the package
 	pip uninstall $(NAME)
+
+dist: clean
+	python3 setup.py sdist bdist_wheel
+
+upload: dist
+	twine upload dist/*
