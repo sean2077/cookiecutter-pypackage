@@ -51,8 +51,8 @@ install: ## install the package to the active Python's site-packages
 uninstall: ## uninstall the package
 	pip uninstall $(NAME)
 
-dist: clean
+dist: clean ## package
 	python3 setup.py sdist bdist_wheel
 
-upload: dist
+upload: dist # upload the package to pypi
 	twine upload dist/*
