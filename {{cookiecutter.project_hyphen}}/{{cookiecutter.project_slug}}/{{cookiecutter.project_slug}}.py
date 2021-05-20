@@ -12,6 +12,10 @@ def main():
     parser = argparse.ArgumentParser(
         prog=prog_name, description="example python cli tool."
     )
+    # add option of main command
+    parser.add_argument(
+        "-V", "--version", action="version", version=f"%(prog)s {__version__}"
+    )
 
     # create subcommands' main parser
     subparser = parser.add_subparsers(title="Commands", metavar="<command>")
@@ -19,6 +23,7 @@ def main():
     # add subcommands
     ## add subcommand1
     subcommand1 = subparser.add_parser("subcommand1", help="subcommand1.")
+    # add option of subcommand
     subcommand1.add_argument("-a", help="option of subcommand1")
     subcommand1.set_defaults(func=subcommand1_func)
 
