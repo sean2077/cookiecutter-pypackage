@@ -2,7 +2,7 @@
 
 {{ cookiecutter.project_short_description }}
 
-> Note: This project was created with [Cookiecutter](https://gitlab.sz.sensetime.com/audreyr/cookiecutter) and the [`zhangxianbing/cookiecutter-pypackage`](https://github.com/zhangxianbing/cookiecutter-pypackage) project template.
+> Note: This project was created with [Cookiecutter](https://github.com/cookiecutter/cookiecutter) and the [`zhangxianbing/cookiecutter-pypackage`](https://github.com/zhangxianbing/cookiecutter-pypackage) project template.
 
 ## Installation
 

@@ -4,7 +4,7 @@ An minimal [cookiecutter](https://github.com/audreyr/cookiecutter) template for 
 
 ## Quickstart
 
-Install the latest Cookiecutter: 
+Install the latest Cookiecutter:
 
 ```bash
 pip install -U cookiecutter
@@ -14,5 +14,5 @@ pip install -U cookiecutter
 Generate a Python package project:
 
 ```bash
-cookiecutter git@gitlab.sz.sensetime.com:its-engineering/toolkit/cookiecutter-pypackage.git
+cookiecutter git@github.com:zhangxianbing/cookiecutter-pypackage.git
 ```
