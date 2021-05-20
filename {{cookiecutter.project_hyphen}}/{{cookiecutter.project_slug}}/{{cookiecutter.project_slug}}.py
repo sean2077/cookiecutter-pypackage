@@ -1,6 +1,6 @@
 import argparse
 
-from . import prog_name
+from . import prog_name, __version__
 
 
 def subcommand1_func(args):
