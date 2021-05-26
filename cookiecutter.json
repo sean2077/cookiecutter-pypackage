@@ -5,6 +5,7 @@
   "project_short_description": "Python Tool Template.",
   "project_version": "0.1.0",
   "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+  "project_capital": "{{ cookiecutter.project_name.upper().replace(' ', '_').replace('-', '_') }}",
   "project_hyphen": "{{ cookiecutter.project_name.lower().replace(' ', '-').replace('_', '-') }}",
   "project_url": "https://github.com/{{ cookiecutter.author_name }}/{{ cookiecutter.project_hyphen }}"
 }
