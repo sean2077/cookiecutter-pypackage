@@ -1,25 +1,18 @@
+import sys
+
+import appdirs
+from pyclier.setuptools import read_readme, read_requirements
 from setuptools import find_packages, setup
 
-from {{cookiecutter.project_slug}} import __author__, __name__, __version__, prog_name
-
-
-def read_requirements():
-    reqs = []
-    with open("requirements.txt", "r") as f:
-        for line in f:
-            reqs.append(line.strip())
-    return reqs
-
-
-with open("README.md", "r", encoding="utf-8") as fh:
-    long_description = fh.read()
+from {{cookiecutter.project_slug}} import __author__, __email__, __name__, __version__, prog_name
 
 setup(
     name=__name__,
     version=__version__,
     author=__author__,
+    author_email=__email__,
     description="{{ cookiecutter.project_short_description }}",
-    long_description=long_description,
+    long_description=read_readme(),
     long_description_content_type="text/markdown",
     url="{{ cookiecutter.project_url }}",
     packages=find_packages(include=[f"{__name__}*"]),
@@ -31,3 +24,16 @@ setup(
         ],
     },
 )
+
+# post installation
+
+from pyclier.setuptools import copytree, enable_complete
+
+command = sys.argv[-1]
+if command == "install":
+    copytree("conf", appdirs.user_config_dir(prog_name))
+    enable_complete(prog_name)
+
+    import pip
+
+    pip.main(["install", ".", "-U", "--no-index"])

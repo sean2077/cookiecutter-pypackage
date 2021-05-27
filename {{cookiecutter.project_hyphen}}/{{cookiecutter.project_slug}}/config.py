@@ -6,13 +6,15 @@ from typing import List, Optional
 import appdirs
 from pyclier import LDMixin, load_conf_parser
 
+from . import prog_name
+
 log = logging.getLogger(__name__)
 
 
 # ======================   Config file locations   ====================== #
 
 CONF_DIRS = [
-    appdirs.user_config_dir("miga"),
+    appdirs.user_config_dir(prog_name),
     os.path.join("${{ cookiecutter.project_capital }}_HOME", "conf"),
     "${{ cookiecutter.project_capital }}_CONF_DIR",
     os.path.join(os.curdir, "conf"),

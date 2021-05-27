@@ -9,7 +9,7 @@
 ```bash
  # install
  git clone {{ cookiecutter.project_url }}
- cd {{ cookiecutter.project_hyphen }} && pip install .
+ cd {{ cookiecutter.project_hyphen }} && make install
 ```
 
 ## Usage

@@ -55,8 +55,11 @@ lint: ## check style with black
 docs: ## format docs
 	doctoc --gitlab README.md
 
+dist: clean ## package
+	python3 setup.py sdist bdist_wheel
+
 install: ## install the package to the active Python's site-packages
-	pip install . -U --no-index
+	python setup.py install
 
 uninstall: ## uninstall the package
 	pip uninstall $(NAME)
