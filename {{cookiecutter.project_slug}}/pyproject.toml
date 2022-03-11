@@ -1,3 +1,5 @@
+{% import "context.j2" as ctx with context -%}
+
 {%- set license_classifiers = {
     'MIT': 'License :: OSI Approved :: MIT License',
     'BSD-3-Clause': 'License :: OSI Approved :: BSD License',
@@ -11,19 +13,19 @@ build-backend = "poetry.core.masonry.api"
 
 [tool]
 [tool.poetry]
-name = "{{ cookiecutter.package_name }}"
-version = "{{ cookiecutter.project_version }}"
-description = "{{ cookiecutter.project_short_description }}."
-authors = ["{{ cookiecutter.author_name.replace('\"', '\\\"') }} <{{ cookiecutter.author_email }}>"]
+name = "{{ ctx.package_name }}"
+version = "{{ ctx.project_version }}"
+description = "{{ ctx.project_short_description }}."
+authors = ["{{ ctx.author_name.replace('\"', '\\\"') }} <{{ ctx.author_email }}>"]
 readme = "README.md"
-{%- if cookiecutter.open_source_license in license_classifiers %}
-license =  "{{ cookiecutter.open_source_license }}"
+{%- if ctx.open_source_license in license_classifiers %}
+license =  "{{ ctx.open_source_license }}"
 {%- endif %}
 classifiers=[
     'Development Status :: 2 - Pre-Alpha',
     'Intended Audience :: Developers',
-{%- if cookiecutter.open_source_license in license_classifiers %}
-    '{{ license_classifiers[cookiecutter.open_source_license] }}',
+{%- if ctx.open_source_license in license_classifiers %}
+    '{{ license_classifiers[ctx.open_source_license] }}',
 {%- endif %}
     'Natural Language :: English',
     'Programming Language :: Python :: 3',
@@ -33,13 +35,13 @@ classifiers=[
     'Programming Language :: Python :: 3.9',
 ]
 packages = [
-    { include = "{{ cookiecutter.package_name }}" },
+    { include = "{{ ctx.package_name }}" },
     { include = "tests", format = "sdist" },
 ]
 
 [tool.poetry.dependencies]
 python = ">=3.6.2,<4.0"
-{%- if cookiecutter.command_line_interface|lower == 'click' %}
+{%- if ctx.command_line_interface|lower == 'click' %}
 click = "8.0.1"
 {%- endif %}
 
@@ -47,7 +49,7 @@ black  = { version = "^21.5b2", optional = true}
 isort  = { version = "^5.8.0", optional = true}
 flake8  = { version = "^3.9.2", optional = true}
 flake8-docstrings = { version = "^1.6.0", optional = true }
-{%- if cookiecutter.use_mypy == 'y' %}
+{%- if ctx.use_mypy == 'y' %}
 mypy = {version = "^0.900", optional = true}
 {%- endif %}
 pytest  = { version = "^6.2.4", optional = true}
@@ -71,7 +73,7 @@ test = [
     "pytest",
     "black",
     "isort",
-    {%- if cookiecutter.use_mypy == 'y' %}
+    {%- if ctx.use_mypy == 'y' %}
     "mypy",
     {%- endif %}
     "flake8",
@@ -90,9 +92,9 @@ doc = [
     "mkdocs-autorefs"
     ]
 
-{% if cookiecutter.command_line_interface|lower == 'click' -%}
+{% if ctx.command_line_interface|lower == 'click' -%}
 [tool.poetry.scripts]
-{{ cookiecutter.package_name }} = '{{ cookiecutter.package_name }}.cli:main'
+{{ ctx.package_name }} = '{{ ctx.package_name }}.cli:main'
 
 {% endif -%}
 [tool.black]

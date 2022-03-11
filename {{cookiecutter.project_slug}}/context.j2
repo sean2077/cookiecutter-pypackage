@@ -1,0 +1,23 @@
+{% set project_name = cookiecutter.project_name -%}
+{% set project_slug = cookiecutter.project_slug -%}
+{% set package_name = cookiecutter.package_name -%}
+{% set project_short_description = cookiecutter.project_short_description -%}
+{% set project_version = cookiecutter.project_version -%}
+{% set project_default_branch = cookiecutter.project_default_branch -%}
+{% set author_name = cookiecutter.author_name -%}
+{% set author_email = cookiecutter.author_email -%}
+{% set platform = cookiecutter.platform -%}
+{% set platform_url = cookiecutter.platform_url -%}
+{% set platform_username = cookiecutter.platform_username -%}
+{% set open_source_license = cookiecutter.open_source_license -%}
+{% set command_line_interface = cookiecutter.command_line_interface -%}
+{% set document_tool = cookiecutter.document_tool -%}
+{% set docstrings_style = cookiecutter.docstrings_style -%}
+{% set use_mypy = cookiecutter.use_mypy -%}
+{% set install_precommit_hooks = cookiecutter.install_precommit_hooks -%}
+
+{% set is_github = platform == 'GitHub' -%}
+{% set is_gitlab = platform == 'GitLab' -%}
+{% set project_path = platform_username ~ '/' ~ project_slug -%}
+{% set project_url = platform_url ~ '/' ~ project_path -%}
+{% set is_open_source = open_source_license != 'Not open source' -%}

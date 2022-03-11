@@ -11,6 +11,7 @@ CONTEXT = {
     "open_source_license": "{{ cookiecutter.open_source_license }}",
     "command_line_interface": "{{ cookiecutter.command_line_interface }}",
     "document_tool": "{{ cookiecutter.document_tool }}",
+    "_cleanup": True,
 }
 
 ACTIONS_MAP = {
@@ -44,6 +45,11 @@ ACTIONS_MAP = {
         "No docs": {
             "remove": ["docs-sphinx", "docs-mkdocs"],
         },
+    },
+    "_cleanup": {
+        True: {
+            "remove": ["context.j2"],
+        }
     },
 }
 

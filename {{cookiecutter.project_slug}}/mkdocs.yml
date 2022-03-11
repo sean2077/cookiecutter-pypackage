@@ -1,24 +1,14 @@
-{% set project_slug = cookiecutter.project_slug -%}
-{% set project_name = cookiecutter.project_name -%}
-{% set package_name = cookiecutter.package_name -%}
-{% set platform = cookiecutter.platform -%}
-{% set platform_url = cookiecutter.platform_url -%}
-{% set platform_username = cookiecutter.platform_username -%}
-{% set author_email = cookiecutter.author_email -%}
-{% set is_github = platform == 'GitHub' -%}
-{% set is_gitlab = platform == 'GitLab' -%}
-{% set project_path = platform_username ~ '/' ~ project_slug -%}
-{% set project_url = platform_url ~ '/' ~ project_path -%}
+{% import "context.j2" as ctx with context -%}
 
-site_name: {{ project_name }}
-{% if is_github -%}
-site_url: https://{{ platform_username }}.github.io/{{ project_slug }}
-{% elif is_gitlab -%}
-{% set lst = platform_username.split('/') -%}
-site_url: https://{{ lst[0] }}.pages.{{ platform_url[8:] }}/{{ lst[1:]|join('/') }}/{{ project_slug }}
+site_name: {{ ctx.project_name }}
+{% if ctx.is_github -%}
+site_url: https://{{ ctx.platform_username }}.github.io/{{ ctx.project_slug }}
+{% elif ctx.is_gitlab -%}
+{% set lst = ctx.platform_username.split('/') -%}
+site_url: https://{{ lst[0] }}.pages.{{ ctx.platform_url[8:] }}/{{ lst[1:]|join('/') }}/{{ ctx.project_slug }}
 {% endif -%}
-repo_url: {{ project_url }}
-repo_name: {{ project_path }}
+repo_url: {{ ctx.project_url }}
+repo_name: {{ ctx.project_path }}
 #strict: true
 nav:
   - Home: index.md
@@ -69,7 +59,7 @@ plugins:
       lang: zh
   - mkdocstrings:
       watch:
-        - src/{{ package_name }}
+        - src/{{ ctx.package_name }}
 extra:
   social:
     - icon: fontawesome/brands/twitter
@@ -80,11 +70,11 @@ extra:
       # replace with your own facebook link below
       link: https://github.com/zhangxianbing/cookiecutter-pypackage
       name: Facebook
-    - icon: fontawesome/brands/{{ platform|lower }}
-      link: {{ project_url }}
-      name: {{ platform }}
+    - icon: fontawesome/brands/{{ ctx.platform|lower }}
+      link: {{ ctx.project_url }}
+      name: {{ ctx.platform }}
     - icon: material/email
-      link: "mailto:{{ author_email }}"
+      link: "mailto:{{ ctx.author_email }}"
   # to enable disqus, uncomment the following and put your disqus id below
   # disqus: disqus_id
 # uncomment the following and put your google tracking id below to enable GA

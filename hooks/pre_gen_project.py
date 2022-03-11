@@ -1,6 +1,5 @@
 import os
 import re
-import shutil
 import sys
 
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
