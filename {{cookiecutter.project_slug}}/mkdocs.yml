@@ -1,0 +1,93 @@
+{% set project_slug = cookiecutter.project_slug -%}
+{% set project_name = cookiecutter.project_name -%}
+{% set package_name = cookiecutter.package_name -%}
+{% set platform = cookiecutter.platform -%}
+{% set platform_url = cookiecutter.platform_url -%}
+{% set platform_username = cookiecutter.platform_username -%}
+{% set author_email = cookiecutter.author_email -%}
+{% set is_github = platform == 'GitHub' -%}
+{% set is_gitlab = platform == 'GitLab' -%}
+{% set project_path = platform_username ~ '/' ~ project_slug -%}
+{% set project_url = platform_url ~ '/' ~ project_path -%}
+
+site_name: {{ project_name }}
+{% if is_github -%}
+site_url: https://{{ platform_username }}.github.io/{{ project_slug }}
+{% elif is_gitlab -%}
+{% set lst = platform_username.split('/') -%}
+site_url: https://{{ lst[0] }}.pages.{{ platform_url[8:] }}/{{ lst[1:]|join('/') }}/{{ project_slug }}
+{% endif -%}
+repo_url: {{ project_url }}
+repo_name: {{ project_path }}
+#strict: true
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Usage: usage.md
+  - Dev: dev.md
+  - Testing: testing.md
+  - Contributing: contributing.md
+  - Api: api.md
+theme:
+  name: material
+  language: zh
+  #logo: assets/logo.png
+  palette:
+    scheme: preference
+    primary: indigo
+    accent: indigo
+  features:
+    - navigation.indexes
+    - navigation.instant
+    - navigation.tabs.sticky
+markdown_extensions:
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.tabbed
+  - attr_list
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.highlight:
+      linenums: false
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.details
+  - admonition
+  - toc:
+      baselevel: 2
+      permalink: true
+      slugify: !!python/name:pymdownx.slugs.uslugify
+  - meta
+plugins:
+  - include-markdown
+  - search:
+      lang: zh
+  - mkdocstrings:
+      watch:
+        - src/{{ package_name }}
+extra:
+  social:
+    - icon: fontawesome/brands/twitter
+      # replace with your own tweet link below
+      link: https://github.com/zhangxianbing/cookiecutter-pypackage
+      name: Tweet
+    - icon: fontawesome/brands/facebook
+      # replace with your own facebook link below
+      link: https://github.com/zhangxianbing/cookiecutter-pypackage
+      name: Facebook
+    - icon: fontawesome/brands/{{ platform|lower }}
+      link: {{ project_url }}
+      name: {{ platform }}
+    - icon: material/email
+      link: "mailto:{{ author_email }}"
+  # to enable disqus, uncomment the following and put your disqus id below
+  # disqus: disqus_id
+# uncomment the following and put your google tracking id below to enable GA
+#google_analytics:
+  #- UA-xxx
+  #- auto
