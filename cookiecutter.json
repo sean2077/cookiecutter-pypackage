@@ -1,11 +1,52 @@
 {
-  "author_name": "zhangxianbing",
-  "author_email": "zhangxianbing09@163.com",
-  "project_name": "Tool Template",
-  "project_short_description": "Python Tool Template.",
-  "project_version": "0.1.0",
-  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
-  "project_capital": "{{ cookiecutter.project_name.upper().replace(' ', '_').replace('-', '_') }}",
-  "project_hyphen": "{{ cookiecutter.project_name.lower().replace(' ', '-').replace('_', '-') }}",
-  "project_url": "https://github.com/{{ cookiecutter.author_name }}/{{ cookiecutter.project_hyphen }}"
+    "project_name": "Python Boilerplate",
+    "project_slug": "{{ cookiecutter.project_name|slugify }}",
+    "package_name": "{{ cookiecutter.project_name|slugify(separator='_') }}",
+    "project_short_description": "Skeleton project created by Cookiecutter PyPackage.",
+    "project_version": "0.1.0",
+    "project_default_branch": "main",
+    "author_name": "Xianbing Zhang",
+    "author_email": "zhangxianbing09@163.com",
+    "platform": [
+        "GitHub",
+        "GitLab"
+    ],
+    "platform_url": "https://{{ cookiecutter.platform|lower }}.com",
+    "platform_username": "zhangxianbing",
+    "open_source_license": [
+        "MIT",
+        "BSD-3-Clause",
+        "ISC",
+        "Apache-2.0",
+        "GPL-3.0-only",
+        "Not open source"
+    ],
+    "command_line_interface": [
+        "Click",
+        "Typer",
+        "No command-line interface"
+    ],
+    "document_tool": [
+        "Sphinx",
+        "Mkdocs",
+        "No docs"
+    ],
+    "data_model": [
+        "All",
+        "Attrs",
+        "Pydantic",
+        "No data model"
+    ],
+    "docstrings_style": [
+        "google",
+        "numpy",
+        "pep257"
+    ],
+    "use_mypy": "y",
+    "install_precommit_hooks": "y",
+    "_copy_without_render": [
+        ".github/workflows/*.yml",
+        "docs-mkdocs/index.md",
+        "context.j2"
+    ]
 }
