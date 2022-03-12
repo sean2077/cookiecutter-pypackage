@@ -21,3 +21,9 @@
 {% set project_path = platform_username ~ '/' ~ project_slug -%}
 {% set project_url = platform_url ~ '/' ~ project_path -%}
 {% set is_open_source = open_source_license != 'Not open source' -%}
+{% if is_github -%}
+{% set document_url = "https://" ~ platform_username ~ ".github.io/" ~ project_slug %}
+{% elif is_gitlab -%}
+{% set lst = platform_username.split('/') -%}
+{% set document_url = "https://" ~ lst[0] ~ ".pages." ~ platform_url[8:] ~ "/" ~ lst[1:]|join('/') ~ "/" ~ project_slug %}
+{% endif -%}

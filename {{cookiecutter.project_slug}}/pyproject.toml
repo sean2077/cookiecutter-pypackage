@@ -17,6 +17,7 @@ name = "{{ ctx.package_name }}"
 version = "{{ ctx.project_version }}"
 description = "{{ ctx.project_short_description }}."
 authors = ["{{ ctx.author_name.replace('\"', '\\\"') }} <{{ ctx.author_email }}>"]
+document = {{ ctx.document_url }}
 readme = "README.md"
 {%- if ctx.open_source_license in license_classifiers %}
 license =  "{{ ctx.open_source_license }}"

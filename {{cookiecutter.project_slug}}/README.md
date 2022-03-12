@@ -21,12 +21,7 @@
 
 {{ cookiecutter.project_short_description }}
 
-{% if ctx.is_github -%}
-* Documentation: <https://{{ ctx.platform_username }}.github.io/{{ ctx.project_slug }}>
-{% elif ctx.is_gitlab -%}
-{% set lst = ctx.platform_username.split('/') -%}
-* Documentation: <https://{{ lst[0] }}.pages.{{ ctx.platform_url[8:] }}/{{ lst[1:]|join('/') }}/{{ ctx.project_slug }}>
-{% endif -%}
+* Documentation: <{{ ctx.document_url }}>
 * {{ ctx.platform }}: <{{ ctx.project_url }}>
 {% if ctx.is_open_source -%}
 * PyPI: <https://pypi.org/project/{{ ctx.project_slug }}/>

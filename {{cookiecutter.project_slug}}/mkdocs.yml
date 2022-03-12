@@ -1,12 +1,7 @@
 {% import "context.j2" as ctx with context -%}
 
 site_name: {{ ctx.project_name }}
-{% if ctx.is_github -%}
-site_url: https://{{ ctx.platform_username }}.github.io/{{ ctx.project_slug }}
-{% elif ctx.is_gitlab -%}
-{% set lst = ctx.platform_username.split('/') -%}
-site_url: https://{{ lst[0] }}.pages.{{ ctx.platform_url[8:] }}/{{ lst[1:]|join('/') }}/{{ ctx.project_slug }}
-{% endif -%}
+site_url: {{ ctx.document_url }}
 repo_url: {{ ctx.project_url }}
 repo_name: {{ ctx.project_path }}
 #strict: true
