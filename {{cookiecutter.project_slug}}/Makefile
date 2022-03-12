@@ -1,7 +1,7 @@
 VERSION := $(shell grep -oPm1 '(?<=version = ")[^"]+' pyproject.toml)
 GIT_SHORT_HASH=$(shell git rev-parse --short HEAD)
 BUILD_DATE=$(shell date '+%Y年%m月%d日 %H:%M:%S')
-SRC=src/miga
+SRC=src/{{ cookiecutter.package_name }}
 
 .PHONY: build image
 
@@ -70,7 +70,16 @@ update:
 install:
 	pipx install .
 
-{% if cookiecutter.document_tool == 'Mkdocs' %}
+{% if cookiecutter.document_tool == 'Mkdocs' -%}
 doc:
 	PYTHONPATH=src:$(PYTHONPATH) mkdocs serve
-{% endif %}
+{% endif -%}
+
+release-patch:
+	bump2version patch --allow-dirty
+
+release-minor:
+	bump2version minor --allow-dirty
+
+release-major:
+	bump2version major --allow-dirty
