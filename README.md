@@ -18,7 +18,7 @@ cookiecutter https://github.com/waynerv/cookiecutter-pypackage.git --directory z
 
 ## 亮点
 
-本模板集成的工具及功能说明如下（部分类别工具只可选其一）:
+本模板集成的工具及功能说明如下:
 
 ### 项目工具
 
@@ -44,12 +44,21 @@ cookiecutter https://github.com/waynerv/cookiecutter-pypackage.git --directory z
 
 用途：构建 Python 命令行应用程序。
 
-下述工具选其一:
+下述 CLI 框架选其一:
 
 | 工具                                                 | 优点                                                         | 缺点 | 适用的场景 |
 | ---------------------------------------------------- | ------------------------------------------------------------ | ---- | ---------- |
 | [Click](https://click.palletsprojects.com/en/8.0.x/) | 基于 Python 装饰器构建CLI，比较简洁直观；丰富的插件；有生成Sphinx文档的插件 |      |            |
 | [Typer](https://typer.tiangolo.com/)                 | 基于 Python 类型提示构建CLI, 非常简洁直观；基于 Click，继承了 Click 的诸多优点和插件；支持赋予自动补全的能力 |      | 更推荐     |
+
+### 数据模型库（可选）
+
+下述 CLI 框架选其一:
+
+| 工具                                                         | 优点                 | 缺点 | 适用的场景 |
+| ------------------------------------------------------------ | -------------------- | ---- | ---------- |
+| [attrs](https://github.com/python-attrs/attrs), [cattrs](https://github.com/python-attrs/cattrs) | 声明式定义类         |      |            |
+| [pydantic](https://github.com/samuelcolvin/pydantic)         | 支持有效的类型验证； |      |            |
 
 ### 文档工具（可选）
 

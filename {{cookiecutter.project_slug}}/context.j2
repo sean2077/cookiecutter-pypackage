@@ -12,12 +12,20 @@
 {% set open_source_license = cookiecutter.open_source_license -%}
 {% set command_line_interface = cookiecutter.command_line_interface -%}
 {% set document_tool = cookiecutter.document_tool -%}
+{% set data_model = cookiecutter.data_model -%}
 {% set docstrings_style = cookiecutter.docstrings_style -%}
-{% set use_mypy = cookiecutter.use_mypy -%}
 {% set install_precommit_hooks = cookiecutter.install_precommit_hooks -%}
 
+{% set use_mypy = cookiecutter.use_mypy == 'y' -%}
 {% set is_github = platform == 'GitHub' -%}
 {% set is_gitlab = platform == 'GitLab' -%}
+{% set use_click = command_line_interface == 'Click' -%}
+{% set use_typer = command_line_interface == 'Typer' -%}
+{% set is_cli = command_line_interface != "No command-line interface" %}
+{% set use_attrs = data_model in ('Attrs', 'All') %}
+{% set use_pydantic = data_model in ('Pydantic', 'All') %}
+{% set use_sphinx = document_tool == 'Sphinx' %}
+{% set use_mkdocs = document_tool == 'Mkdocs' %}
 {% set project_path = platform_username ~ '/' ~ project_slug -%}
 {% set project_url = platform_url ~ '/' ~ project_path -%}
 {% set is_open_source = open_source_license != 'Not open source' -%}

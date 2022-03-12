@@ -31,6 +31,12 @@
         "Mkdocs",
         "No docs"
     ],
+    "data_model": [
+        "All",
+        "Attrs",
+        "Pydantic",
+        "No data model"
+    ],
     "docstrings_style": [
         "google",
         "numpy",
