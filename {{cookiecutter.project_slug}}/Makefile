@@ -1,3 +1,5 @@
+{% import "context.j2" as ctx with context -%}
+
 VERSION := $(shell grep -oPm1 '(?<=version = ")[^"]+' pyproject.toml)
 GIT_SHORT_HASH=$(shell git rev-parse --short HEAD)
 BUILD_DATE=$(shell date '+%Y年%m月%d日 %H:%M:%S')
@@ -70,8 +72,15 @@ update:
 install:
 	pipx install .
 
-{% if cookiecutter.document_tool == 'Mkdocs' -%}
-doc:
+build-doc:
+{%- if ctx.use_mkdocs +%}
+	PYTHONPATH=src:$(PYTHONPATH) mkdocs build
+{%- elif ctx.use_sphinx +%}
+	sphinx-build -b html docs public
+{% endif -%}
+
+{%- if ctx.use_mkdocs +%}
+dev-doc:
 	PYTHONPATH=src:$(PYTHONPATH) mkdocs serve
 {% endif -%}
 

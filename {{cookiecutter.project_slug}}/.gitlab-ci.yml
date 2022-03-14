@@ -43,7 +43,7 @@ pages:
     - poetry install -E doc
     - poetry shell
   script:
-    - sphinx-build -b html docs public
+    - make build-doc
   artifacts:
     paths:
       - public
