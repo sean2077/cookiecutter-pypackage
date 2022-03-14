@@ -1,0 +1,50 @@
+image: zhangxianbing/python-runtime:v0.0.1-59c3b60
+
+stages:
+  - test
+  - deploy
+
+################################################################################
+### Test
+################################################################################
+
+py_test:
+  variables:
+    GIT_LFS_SKIP_SMUDGE: "0"
+  stage: test
+  retry: 2
+  before_script:
+    - poetry install -E test
+    - poetry shell
+  script:
+    - make test
+
+py_coverage:
+  variables:
+    GIT_LFS_SKIP_SMUDGE: "0"
+  stage: test
+  retry: 2
+  before_script:
+    - poetry install -E test
+    - poetry shell
+  script:
+    - make coverage
+  artifacts:
+    paths:
+      - coverage
+
+################################################################################
+### Deploy
+################################################################################
+
+pages:
+  stage: deploy
+  before_script:
+    - poetry install -E doc
+    - poetry shell
+  script:
+    - sphinx-build -b html docs public
+  artifacts:
+    paths:
+      - public
+
