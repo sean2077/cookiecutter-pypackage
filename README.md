@@ -13,7 +13,7 @@ pip install -U cookiecutter
 构建 Python 项目:
 
 ```bash
-cookiecutter https://github.com/waynerv/cookiecutter-pypackage.git --directory zh
+cookiecutter https://github.com/waynerv/cookiecutter-pypackage.git
 ```
 
 ## 亮点
