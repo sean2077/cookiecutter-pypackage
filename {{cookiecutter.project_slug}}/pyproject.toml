@@ -19,6 +19,7 @@ version = "{{ ctx.project_version }}"
 description = "{{ ctx.project_short_description }}."
 authors = ["{{ ctx.author_name.replace('\"', '\\\"') }} <{{ ctx.author_email }}>"]
 readme = "README.md"
+homepage = "{{ ctx.document_url }}"
 documentation = "{{ ctx.document_url }}"
 repository = "{{ ctx.project_url }}"
 {% if ctx.open_source_license in license_classifiers -%}
@@ -58,36 +59,36 @@ pydantic = "^1.9.0"
 
 [tool.poetry.dev-dependencies]
 # for tests
-pytest = { version = "^6.2.4", optional = true }
-pytest-cov = { version = "^2.12.0", optional = true }
+pytest = { version = "^6.2.4", optional = false }
+pytest-cov = { version = "^2.12.0", optional = false }
 # for code style
-black = { version = "^21.5b2", optional = true }
-isort = { version = "^5.8.0", optional = true }
+black = { version = "^21.5b2", optional = false }
+isort = { version = "^5.8.0", optional = false }
 {% if ctx.use_mypy -%}
-mypy = { version = "^0.900", optional = true }
+mypy = { version = "^0.900", optional = false }
 {% endif -%}
-autoflake = { version = "^1.4", optional = true }
-flake8 = { version = "^3.9.2", optional = true }
-flake8-docstrings = { version = "^1.6.0", optional = true }
+autoflake = { version = "^1.4", optional = false }
+flake8 = { version = "^3.9.2", optional = false }
+flake8-docstrings = { version = "^1.6.0", optional = false }
 # for documents
 {% if ctx.use_sphinx -%}
-Sphinx = { version = "^4.4.0", optional = true }
-furo = { version = "^2022.2.14.1", optional = true }
-autodoc-pydantic = { version = "^1.6.1", optional = true }
-sphinxcontrib-programoutput = { version = "^0.17", optional = true }
-sphinx-copybutton = { version = "^0.5.0", optional = true }
+Sphinx = { version = "^4.4.0", optional = false }
+furo = { version = "^2022.2.14.1", optional = false }
+autodoc-pydantic = { version = "^1.6.1", optional = false }
+sphinxcontrib-programoutput = { version = "^0.17", optional = false }
+sphinx-copybutton = { version = "^0.5.0", optional = false }
 {% elif ctx.use_mkdocs -%}
-mkdocs = { version = "^1.1.2", optional = true }
-mkdocs-include-markdown-plugin = { version = "^1.0.0", optional = true }
-mkdocs-material = { version = "^6.1.7", optional = true }
-mkdocstrings = { version = "^0.15.2", optional = true }
-mkdocs-material-extensions = { version = "^1.0.1", optional = true }
-mkdocs-autorefs = { version = "^0.2.1", optional = true }
+mkdocs = { version = "^1.1.2", optional = false }
+mkdocs-include-markdown-plugin = { version = "^1.0.0", optional = false }
+mkdocs-material = { version = "^6.1.7", optional = false }
+mkdocstrings = { version = "^0.15.2", optional = false }
+mkdocs-material-extensions = { version = "^1.0.1", optional = false }
+mkdocs-autorefs = { version = "^0.2.1", optional = false }
 {% endif -%}
 # others
-pipx = { version = "^1.0.0", optional = true }
-pre-commit = { version = "^2.17.0", optional = true }
-bump2version = { version = "^1.0.1", optional = true }
+pipx = { version = "^1.0.0", optional = false }
+pre-commit = { version = "^2.17.0", optional = false }
+bump2version = { version = "^1.0.1", optional = false }
 
 [tool.poetry.extras]
 test = ["pytest", "pytest-cov"]
