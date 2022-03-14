@@ -73,16 +73,19 @@ install:
 	pipx install .
 
 build-doc:
-{%- if ctx.use_mkdocs +%}
-	PYTHONPATH=src:$(PYTHONPATH) mkdocs build
-{%- elif ctx.use_sphinx +%}
-	sphinx-build -b html docs public
-{% endif -%}
+{%- if ctx.use_mkdocs %}
+	PYTHONPATH=src:$(PYTHONPATH) mkdocs build -d public
+{%- elif ctx.use_sphinx %}
+	PYTHONPATH=src:$(PYTHONPATH) sphinx-build -b html docs public
+{%- endif %}
 
-{%- if ctx.use_mkdocs +%}
+{% if ctx.use_mkdocs -%}
 dev-doc:
 	PYTHONPATH=src:$(PYTHONPATH) mkdocs serve
-{% endif -%}
+
+deploy-doc:
+	PYTHONPATH=src:$(PYTHONPATH) mkdocs gh-deploy
+{%- endif %}
 
 release-patch:
 	bump2version patch --allow-dirty
