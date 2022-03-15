@@ -40,7 +40,7 @@ BROWSER := python3 -c "$$BROWSER_PYSCRIPT"
 
 coverage:
 	PYTHONPATH=src:$(PYTHONPATH) pytest --cov=. --cov-report=term --cov-report=html
-	$(BROWSER) coverage/index.html
+	$(BROWSER) htmlcov/index.html
 
 
 clean: clean-build clean-pyc clean-test
@@ -62,7 +62,6 @@ clean-pyc:
 clean-test:
 	rm -fr .tox/
 	rm -f .coverage
-	rm -fr coverage
 	rm -fr htmlcov/
 	rm -fr .pytest_cache
 
