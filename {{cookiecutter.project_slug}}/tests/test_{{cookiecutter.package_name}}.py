@@ -11,7 +11,7 @@ from typer.testing import CliRunner
 {%- endif %}
 
 {% if ctx.is_cli -%}
-from {{ ctx.package_name }} import cli
+from {{ ctx.package_name }} import __version__, cli
 {%- endif %}
 
 
@@ -32,6 +32,7 @@ def test_content(response):
     del response
 {%- if ctx.is_cli %}
 
+
 {% if ctx.use_click -%}
 app = cli.main
 {% elif ctx.use_typer -%}
@@ -48,4 +49,7 @@ def test_command_line_interface():
     help_result = runner.invoke(app, ["--help"])
     assert help_result.exit_code == 0
     assert "--help                          Show this message and exit." in help_result.output
+    version_result = runner.invoke(app, ["--version"])
+    assert version_result.exit_code == 0
+    assert f"{{ ctx.package_name }} {__version__}" in version_result.output
 {%- endif %}

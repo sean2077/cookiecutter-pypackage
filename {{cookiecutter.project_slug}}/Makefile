@@ -20,7 +20,7 @@ format:
 	find $(SRC) -name '*.py' -type f -exec black {} +
 
 lint:
-	mypy $(SRC) tests
+	mypy $(SRC)
 
 pre-commit:
 	pre-commit run -a -v

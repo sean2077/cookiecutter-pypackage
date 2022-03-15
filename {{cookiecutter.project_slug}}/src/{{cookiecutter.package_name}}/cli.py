@@ -76,7 +76,7 @@ def goodbye(name: str, formal: bool = False) -> None:
 
 
 def main() -> None:
-    app()
+    app()  # pragma: no cover
 
 
 if __name__ == "__main__":
