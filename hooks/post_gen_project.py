@@ -124,7 +124,7 @@ def init_git():
             "config",
             "--global",
             "init.defaultBranch",
-            "main",
+            "{{ cookiecutter.project_default_branch }}",
             cwd=PROJECT_DIRECTORY,
         )
         execute("git", "init", cwd=PROJECT_DIRECTORY)
