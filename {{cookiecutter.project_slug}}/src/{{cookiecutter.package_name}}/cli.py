@@ -1,6 +1,6 @@
 {% import "context.j2" as ctx with context -%}
 
-"""Console script for {{cookiecutter.package_name}}."""
+"""Console script for {{ctx.package_name}}."""
 
 {% if ctx.use_click -%}
 import os
@@ -12,10 +12,10 @@ from . import __version__
 
 
 def version_msg():
-    """Return the {{cookiecutter.project_slug}} version, location and Python powering it."""
+    """Return the {{ctx.project_slug}} version, location and Python powering it."""
     python_version = sys.version[:3]
     location = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    message = "{{cookiecutter.project_slug}} %(version)s from {} (Python {})"
+    message = "{{ctx.project_slug}} %(version)s from {} (Python {})"
     return message.format(location, python_version)
 
 
@@ -23,9 +23,9 @@ def version_msg():
 @click.version_option(__version__, "-V", "--version", message=version_msg())
 def main():
     """Main entrypoint."""
-    click.echo("{{ cookiecutter.package_name }}")
-    click.echo("=" * len("{{ cookiecutter.package_name }}"))
-    click.echo("{{ cookiecutter.project_short_description }}")
+    click.echo("{{ ctx.package_name }}")
+    click.echo("=" * len("{{ ctx.package_name }}"))
+    click.echo("{{ ctx.project_short_description }}")
 
 
 if __name__ == "__main__":
@@ -39,14 +39,15 @@ from typing import Optional
 
 import typer
 
-from . import __name__, __version__
+from . import __version__
 
 
 def version_callback(value: bool) -> None:
     if value:
-        python_version = sys.version[:3]
+        prog_name = "{{ctx.project_slug}}"
         location = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        typer.echo(f"{__name__} {__version__} from {location} (python {python_version})")
+        python_version = sys.version[:3]
+        typer.echo(f"{prog_name} {__version__} from {location} (python {python_version})")
         raise typer.Exit()
 
 

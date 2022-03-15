@@ -43,13 +43,15 @@ poetry install -E test -E doc -E dev
 poetry update
 ```
 
-## 安装应用
+## 临时安装应用
 
-推荐以 editable 模式安装本应用:
+poetry install 默认以 editable 模式安装本应用.
 
 ```bash
-pipx install -e .
+poetry install
 ```
+
+> **_注意:_** 通过此方式安装的应用只能在对应的 poetry 虚拟环境（poetry shell）中运行，要全局安装此应用，请参考 [安装](./installation.md)
 
 ## 维护文档
 

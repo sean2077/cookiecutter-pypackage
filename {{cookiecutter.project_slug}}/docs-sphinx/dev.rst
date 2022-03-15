@@ -1,10 +1,8 @@
 开发
 ====
 
-请在开发前确保安装了以下工具:
-
-- `poetry <https://python-poetry.org/>`_: 管理依赖和工具配置
-- `pipx <https://github.com/pypa/pipx>`_: 管理工具的安装
+本项目采用 `poetry <https://python-poetry.org/>`_ 管理依赖和配置，
+请在开发前确保安装了最新的 poetry 工具.
 
 
 切换 Python 环境
@@ -52,14 +50,18 @@ Pycharm/IDEA:
     poetry update
 
 
-安装应用
---------
+临时安装应用
+------------
 
-推荐以 editable 模式安装本应用:
+poetry install 默认以 editable 模式安装本应用.
 
 .. code-block:: bash
 
-    pipx install -e .
+    poetry install
+
+.. note::
+    通过此方式安装的应用只能在对应的 poetry 虚拟环境（poetry shell）中运行，
+    要全局安装此应用，请参考 :ref:`installation`
 
 
 维护文档
