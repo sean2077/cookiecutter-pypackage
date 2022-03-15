@@ -126,6 +126,13 @@ doc = [
 {%- endif %}
 ]
 
+{% if ctx.use_pypi_mirror -%}
+[[tool.poetry.source]]
+name = "tsinghua"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
+default = true
+{%- endif %}
+
 {% if ctx.is_cli -%}
 [tool.poetry.scripts]
 {{ ctx.project_slug }} = "{{ ctx.package_name }}.cli:main"
