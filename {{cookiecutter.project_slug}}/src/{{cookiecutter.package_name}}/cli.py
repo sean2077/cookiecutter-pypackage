@@ -29,7 +29,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()  # pragma: no cover
+    main()
 
 {% elif ctx.use_typer -%}
 
@@ -41,6 +41,8 @@ import typer
 
 from . import __version__
 
+app = typer.Typer()
+
 
 def version_callback(value: bool) -> None:
     if value:
@@ -51,18 +53,32 @@ def version_callback(value: bool) -> None:
         raise typer.Exit()
 
 
-def cli(
-    name: str = typer.Option("World"),
-    version: Optional[bool] = typer.Option(None, "--version", callback=version_callback),
+@app.callback(no_args_is_help=True)
+def {{ ctx.package_name }}(
+    version: Optional[bool] = typer.Option(
+        None, "--version", help="Show version information and exit.", callback=version_callback, is_eager=True
+    ),
 ) -> None:
+    pass
+
+
+@app.command()
+def hello(name: str = "World") -> None:
     typer.echo(f"Hello {name}")
 
 
+@app.command()
+def goodbye(name: str, formal: bool = False) -> None:
+    if formal:
+        typer.echo(f"Goodbye Ms. {name}. Have a good day.")
+    else:
+        typer.echo(f"Bye {name}!")
+
+
 def main() -> None:
-    typer.run(cli)
+    app()
 
 
 if __name__ == "__main__":
     main()
-
 {% endif -%}

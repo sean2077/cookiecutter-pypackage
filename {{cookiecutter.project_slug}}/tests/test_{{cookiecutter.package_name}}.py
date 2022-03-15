@@ -4,9 +4,13 @@
 """Tests for `{{ ctx.package_name }}` package."""
 
 import pytest
-{% if ctx.is_cli -%}
+{% if ctx.use_click -%}
 from click.testing import CliRunner
+{% elif ctx.use_typer -%}
+from typer.testing import CliRunner
+{%- endif %}
 
+{% if ctx.is_cli -%}
 from {{ ctx.package_name }} import cli
 {%- endif %}
 
@@ -28,14 +32,20 @@ def test_content(response):
     del response
 {%- if ctx.is_cli %}
 
+{% if ctx.use_click -%}
+app = cli.main
+{% elif ctx.use_typer -%}
+app = cli.app
+{%- endif %}
+
 
 def test_command_line_interface():
     """Test the CLI."""
     runner = CliRunner()
-    result = runner.invoke(cli.main)
+    result = runner.invoke(app)
     assert result.exit_code == 0
     assert "{{ ctx.package_name }}" in result.output
-    help_result = runner.invoke(cli.main, ["--help"])
+    help_result = runner.invoke(app, ["--help"])
     assert help_result.exit_code == 0
-    assert "--help  Show this message and exit." in help_result.output
+    assert "--help                          Show this message and exit." in help_result.output
 {%- endif %}

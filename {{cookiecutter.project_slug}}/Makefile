@@ -78,7 +78,6 @@ build-doc:
 {%- elif ctx.use_sphinx %}
 	PYTHONPATH=src:$(PYTHONPATH) sphinx-build -b html docs public
 {%- endif %}
-
 {% if ctx.use_mkdocs -%}
 dev-doc:
 	PYTHONPATH=src:$(PYTHONPATH) mkdocs serve
@@ -86,7 +85,6 @@ dev-doc:
 deploy-doc:
 	PYTHONPATH=src:$(PYTHONPATH) mkdocs gh-deploy
 {%- endif %}
-
 release-patch:
 	bump2version patch --allow-dirty
 

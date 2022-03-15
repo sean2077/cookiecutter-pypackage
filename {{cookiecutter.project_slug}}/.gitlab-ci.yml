@@ -19,20 +19,6 @@ py_test:
   script:
     - make test
 
-py_coverage:
-  variables:
-    GIT_LFS_SKIP_SMUDGE: "0"
-  stage: test
-  retry: 2
-  before_script:
-    - poetry install -E test
-    - poetry shell
-  script:
-    - make coverage
-  artifacts:
-    paths:
-      - coverage
-
 ################################################################################
 ### Deploy
 ################################################################################
@@ -47,4 +33,3 @@ pages:
   artifacts:
     paths:
       - public
-

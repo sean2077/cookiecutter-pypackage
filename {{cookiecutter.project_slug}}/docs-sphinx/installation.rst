@@ -36,4 +36,3 @@
     git clone {{ ctx.project_url }}.git
     cd {{ ctx.project_slug }}
     pip install .
-
