@@ -18,7 +18,10 @@ cookiecutter https://github.com/waynerv/cookiecutter-pypackage.git
 
 ## 亮点
 
-本模板集成的工具及功能说明如下:
+### 代码平台
+
+- Github
+- Gitlab
 
 ### 项目工具
 
