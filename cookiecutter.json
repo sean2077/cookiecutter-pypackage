@@ -47,7 +47,6 @@
     "use_pypi_mirror": "y",
     "_copy_without_render": [
         ".github/workflows/*.yml",
-        ".gitlab-ci.yml",
         "docs-mkdocs/index.md",
         "context.j2"
     ]

@@ -1,9 +1,10 @@
 # 开发
 
-请在开发前确保安装了以下工具:
+本项目采用 [poetry](https://python-poetry.org/) 管理依赖和配置，请在开发前确保安装了最新的 poetry 工具.
 
-- [poetry](https://python-poetry.org/): 管理依赖和工具配置
-- [pipx](https://github.com/pypa/pipx): 管理工具的安装
+```bash
+pip install poetry==1.2.0a2
+```
 
 ## 切换 Python 环境
 
@@ -34,7 +35,7 @@ poetry shell
 安装项目依赖库及测试、文档、开发所需工具:
 
 ```bash
-poetry install -E test -E doc -E dev
+poetry install
 ```
 
 ## 更新依赖

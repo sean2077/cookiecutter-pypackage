@@ -57,74 +57,58 @@ cattrs = "^1.10.0"
 {% if ctx.use_pydantic -%}
 pydantic = "^1.9.0"
 {%- endif %}
-[tool.poetry.dev-dependencies]
-# for tests
-pytest = { version = "^6.2.4", optional = false }
-pytest-cov = { version = "^2.12.0", optional = false }
-# for code style
-black = { version = "^21.5b2", optional = false }
-isort = { version = "^5.8.0", optional = false }
-{% if ctx.use_mypy -%}
-mypy = { version = "^0.900", optional = false }
-{% endif -%}
-autoflake = { version = "^1.4", optional = false }
-flake8 = { version = "^3.9.2", optional = false }
-flake8-docstrings = { version = "^1.6.0", optional = false }
-# for documents
-{% if ctx.use_sphinx -%}
-Sphinx = { version = "^4.4.0", optional = false }
-furo = { version = "^2022.2.14.1", optional = false }
-autodoc-pydantic = { version = "^1.6.1", optional = false }
-sphinxcontrib-programoutput = { version = "^0.17", optional = false }
-sphinx-copybutton = { version = "^0.5.0", optional = false }
-sphinx-click = { version = "^3.1.0", optional = false }
-{% elif ctx.use_mkdocs -%}
-mkdocs = { version = "^1.1.2", optional = false }
-mkdocs-include-markdown-plugin = { version = "^1.0.0", optional = false }
-mkdocs-material = { version = "^6.1.7", optional = false }
-mkdocstrings = { version = "^0.15.2", optional = false }
-mkdocs-material-extensions = { version = "^1.0.1", optional = false }
-mkdocs-autorefs = { version = "^0.2.1", optional = false }
-{% endif -%}
-# others
-pipx = { version = "^1.0.0", optional = false }
-pre-commit = { version = "^2.17.0", optional = false }
-bump2version = { version = "^1.0.1", optional = false }
-
 [tool.poetry.extras]
-test = ["pytest", "pytest-cov"]
 
-dev = [
-    "pipx",
-    "pre-commit",
-    "bump2version",
-    "black",
-    "isort",
-    "autoflake",
-    "flake8",
-    "flake8-docstrings",
-{%- if ctx.use_mypy +%}
-    "mypy",
+[tool.poetry.group.test]
+optional = true
+[tool.poetry.group.test.dependencies]
+pytest = "^6.2.4"
+pytest-cov = "^2.12.0"
+
+[tool.poetry.group.dev]
+optional = true
+[tool.poetry.group.dev.dependencies]
+black = "^21.5b2"
+isort = "^5.8.0"
+{% if ctx.use_mypy -%}
+mypy = "^0.900"
 {% endif -%}
-]
+autoflake = "^1.4"
+flake8 = "^3.9.2"
+flake8-docstrings = "^1.6.0"
+pipx = "^1.0.0"
+pre-commit = "^2.17.0"
+bump2version = "^1.0.1"
 
-doc = [
+[tool.poetry.group.doc]
+optional = true
+[tool.poetry.group.doc.dependencies]
 {%- if ctx.use_sphinx %}
-    "Sphinx",
-    "furo",
-    "autodoc-pydantic",
-    "sphinxcontrib-programoutput",
-    "sphinx-copybutton",
-    "sphinx-click",
+Sphinx = "^4.4.0"
+furo = "^2022.2.14.1"
+autodoc-pydantic = "^1.6.1"
+sphinxcontrib-programoutput = "^0.17"
+sphinx-copybutton = "^0.5.0"
+sphinx-click = "^3.1.0"
+urllib3 = "^1.26.8"
+charset-normalizer = "^2.0.12"
+certifi = "^2021.10.8"
+idna = "^3.3"
 {%- elif ctx.use_mkdocs %}
-    "mkdocs",
-    "mkdocs-include-markdown-plugin",
-    "mkdocs-material",
-    "mkdocstrings",
-    "mkdocs-material-extension",
-    "mkdocs-autorefs",
+mkdocs = "^1.1.2"
+mkdocs-include-markdown-plugin ="^1.0.0"
+mkdocs-material = "^6.1.7"
+mkdocstrings = "^0.15.2"
+mkdocs-material-extensions = "^1.0.1"
+mkdocs-autorefs = "^0.2.1"
 {%- endif %}
-]
+
+# 为减少依赖递归分析时间，在此列出常用依赖
+[tool.poetry.group.common]
+optional = true
+[tool.poetry.group.common.dependencies]
+numpy = "^1.22.3"
+typing-extensions = "^4.1.1"
 
 {% if ctx.use_pypi_mirror -%}
 [[tool.poetry.source]]

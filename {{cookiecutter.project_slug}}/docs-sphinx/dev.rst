@@ -4,6 +4,9 @@
 本项目采用 `poetry <https://python-poetry.org/>`_ 管理依赖和配置，
 请在开发前确保安装了最新的 poetry 工具.
 
+.. code-block:: bash
+
+    pip install poetry==1.2.0a2
 
 切换 Python 环境
 ----------------
@@ -39,7 +42,7 @@ Pycharm/IDEA:
 
 .. code-block:: bash
 
-    poetry install -E test -E doc -E dev
+    poetry install
 
 
 更新依赖
