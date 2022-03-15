@@ -41,6 +41,7 @@ ACTIONS_MAP = {
         },
         "Mkdocs": {
             "rename": [("docs-mkdocs", "docs")],
+            "keep": ["mkdocs.yml"],
         },
         "No docs": {
             "remove": ["docs-sphinx", "docs-mkdocs"],
