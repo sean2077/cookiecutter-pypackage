@@ -1,0 +1,15 @@
+[flake8]
+min_python_version = 3.8.0
+ban-relative-imports = true
+ignore = E203, E266, E501, W503
+select = B,C,E,F,W,T4,B9
+# line length is intentionally set to 80 here because black uses Bugbear
+# See https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html#line-length for more details
+max-line-length = 120
+max-complexity = 18
+# Allow omission of a return type hint for __init__ if at least one argument is annotated
+# used by flake8-annotations
+mypy-init-return = true
+# flake8-use-fstring: https://github.com/MichaelKim0407/flake8-use-fstring#--percent-greedy-and---format-greedy
+format-greedy = 1
+inline-quotes = double
