@@ -9,7 +9,7 @@
 [![pipeline](<{{ ctx.project_url }}/badges/{{ ctx.project_default_branch }}/pipeline.svg>)](<{{ ctx.project_url }}>)
 [![coverage](<{{ ctx.project_url }}/badges/{{ ctx.project_default_branch }}/coverage.svg>)](<{{ ctx.project_url }}>)
 {% endif -%}
-[![version](<https://img.shields.io/static/v1?label=version&message={{ ctx.project_version }}&color=green>)](<{{ ctx.project_url }}>)
+[![version](<https://img.shields.io/badge/version-{{ ctx.project_version }}-green>)](<{{ ctx.project_url }}>)
 {% if ctx.is_open_source -%}
 [![pypi](<https://img.shields.io/pypi/v/{{ ctx.project_slug }}.svg>)](<https://pypi.org/project/{{ ctx.project_slug }}/>)
 [![python](<https://img.shields.io/pypi/pyversions/{{ ctx.project_slug }}.svg>)](<https://pypi.org/project/{{ ctx.project_slug }}/>)
